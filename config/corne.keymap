@@ -35,10 +35,22 @@
         };
     };
 
+    behaviors {
+        lt_nav_space: lt_nav_space {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LT_NAV_SPACE";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <175>;
+            flavor = "tap-preferred";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        base_layer {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
             // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
@@ -46,14 +58,14 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&trans  &kp Q  &kp W  &kp E         &kp R      &kp T        &kp Y           &kp U  &kp I      &kp O    &kp P     &trans
-&trans  &kp A  &kp S  &kp D         &kp F      &kp G        &kp H           &kp J  &kp K      &kp L    &kp SQT   &trans
-&trans  &kp Z  &kp X  &kp C         &kp V      &kp B        &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH  &trans
-                      &kp LEFT_ALT  &kp RCTRL  &kp SPACE    &kp LEFT_SHIFT  &mo 2  &mo 1
+&trans  &kp Q  &kp W  &kp E  &kp R  &kp T          &kp Y           &kp U  &kp I      &kp O    &kp P      &trans
+&trans  &kp A  &kp S  &kp D  &kp F  &kp G          &kp H           &kp J  &kp K      &kp L    &lt 7 SQT  &trans
+&trans  &kp Z  &kp X  &kp C  &kp V  &kp B          &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH   &trans
+                      &mo 3  &mo 2  &lt 4 SPACE    &kp LEFT_SHIFT  &mo 4  &mo 1
             >;
         };
 
-        raise_layer {
+        symb_layer {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
             // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
@@ -68,7 +80,7 @@
             >;
         };
 
-        layer_3 {
+        num_layer {
             bindings = <
 &trans  &mkp MB4        &mkp LCLK       &mmv MOVE_UP    &mkp MB2         &mkp MB5           &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans          &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans             &trans  &trans  &trans  &trans  &trans  &trans
@@ -77,7 +89,7 @@
             >;
         };
 
-        lower_layer {
+        fun_layer {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
             // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
@@ -89,6 +101,42 @@
 &bt BT_CLR       &bt BT_SEL 0     &bt BT_SEL 1    &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4       &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT  &trans  &trans
 &rgb_ug RGB_EFF  &rgb_ug RGB_TOG  &rgb_ug RGB_ON  &rgb_ug RGB_OFF  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI    &trans    &trans    &trans    &trans     &trans  &trans
                                                   &rgb_ug RGB_SPI  &trans           &kp SPACE          &kp RET   &trans    &kp RALT
+            >;
+        };
+
+        nav_layer {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans  &trans
+            >;
+        };
+
+        navwin_layer {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans  &trans
+            >;
+        };
+
+        navlh_layer {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans  &trans
+            >;
+        };
+
+        mdia_layer {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans  &trans
             >;
         };
     };
