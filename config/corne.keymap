@@ -13,11 +13,6 @@
     combos {
         compatible = "zmk,combos";
 
-        layer_3_combo {
-            bindings = <&mo 0>;
-            key-positions = <40 41>;
-        };
-
         q {
             bindings = <&kp ESC>;
             key-positions = <1 2>;
